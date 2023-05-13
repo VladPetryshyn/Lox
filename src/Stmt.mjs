@@ -8,6 +8,7 @@ export class Visitor {
 	visitFunctionStmt(stmt){}
 	visitClassStmt(stmt){}
 	visitReturnStmt(stmt){}
+	visitArrayStmtStmt(stmt){}
 }
 
 export class Stmt {
@@ -128,5 +129,16 @@ export class Return extends Stmt {
 	}
 	accept(visitor) {
 		return visitor.visitReturnStmt(this)
+	}
+}
+export class ArrayStmt extends Stmt {
+	value
+
+	constructor(value) {
+		super();
+		this.value = value;
+	}
+	accept(visitor) {
+		return visitor.visitArrayStmtStmt(this)
 	}
 }

@@ -83,5 +83,5 @@ defineAst("Stmt", {
   While: "condition, body",
   Function: "name, params, body",
   Class: "name, superclass, methods",
-  Return: "keyword, value"
+  Return: "keyword, value",
 });

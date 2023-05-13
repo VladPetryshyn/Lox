@@ -1,14 +1,5 @@
-class Doughnut {
-  cook() {
-    print "Fry until golden brown.";
-  }
-}
+var oleg = [1, 2, 3, 4, 10];
 
-class BostonCream < Doughnut {
-  cook() {
-  super.cook();
-  print "Pipe full of custard and coat with chocolate.";
-  }
-}
+writeFile("/home/vlad/olga.txt", "I hate oleg")
 
-BostonCream().cook();
+print oleg;

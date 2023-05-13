@@ -85,9 +85,15 @@ export class Parser {
   }
 
   // returns true, if the current token of the given type
-  check(type) {
+  check(...types) {
     if (this.isAtEnd()) return false;
-    return this.peek().type === type;
+    for (const type of types) {
+      if (this.peek().type === type) {
+        return true;
+      }
+    }
+
+    return false;
   }
 
   advance() {
@@ -177,7 +183,14 @@ export class Parser {
     let expr = this.primary();
 
     while (true) {
-      if (this.match(TokenType.LEFT_PAREN)) {
+      if (this.match(TokenType.LEFT_BRACKET)) {
+        const arr = this.arrayStmt();
+        if (arr.length !== 1) {
+          throw this.error(this.peek(), "1");
+        }
+
+        return new Get(expr, arr[0])
+      } else if (this.match(TokenType.LEFT_PAREN)) {
         expr = this.finishCall(expr);
       } else if (this.match(TokenType.DOT)) {
         const name = this.consume(TokenType.IDENTIFIER, "Expect property name after '.'.");
@@ -206,6 +219,10 @@ export class Parser {
       return new Super(keyword, method);
     }
     if (this.match(TokenType.THIS)) return new This(this.previous());
+    if (this.match(TokenType.LEFT_BRACKET)) {
+      const arr = this.arrayStmt();
+      return new Literal(arr);
+    }
     if (this.match(TokenType.IDENTIFIER)) {
       return new Variable(this.previous());
     }
@@ -275,7 +292,6 @@ export class Parser {
 
   printStatement() {
     const value = this.expression();
-
 
     this.consume(TokenType.SEMICOLON, "Expect ; after value.");
     return new Print(value);
@@ -354,10 +370,23 @@ export class Parser {
     return new Var(name, initializer);
   }
 
+  arrayStmt() {
+    const items = [];
+    while (this.check(TokenType.STRING, TokenType.NUMBER, TokenType.IDENTIFIER, TokenType.LEFT_BRACKET, TokenType.COMMA)) {
+      if (!this.match(TokenType.COMMA)) {
+        const item = this.primary();
+        items.push(item);
+      }
+    }
+
+    this.consume(TokenType.RIGHT_BRACKET, "Expect ] after array.");
+    return items;
+  }
+
   expressionStatement() {
     const expr = this.expression();
 
-    this.consume(TokenType.SEMICOLON, "Expect ; after value.");
+    // this.consume(TokenType.SEMICOLON, "Expect ; after value.");
     return new Expression(expr);
   }
 

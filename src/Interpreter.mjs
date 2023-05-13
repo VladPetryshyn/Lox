@@ -5,6 +5,7 @@ import { LoxFunction } from "./LoxFunction.mjs";
 import { LoxInstance } from "./LoxInstance.mjs";
 import { Return } from "./Return.mjs";
 import { TokenType } from "./TokenType.mjs";
+import * as fs from "fs";
 
 export class Interpreter {
   globals = new Environment();
@@ -19,11 +20,56 @@ export class Interpreter {
       }
       toString() { return "native fn" }
     }
+    class push extends LoxCallable {
+      arity() { return 2; }
+      call(_, [array, item]) {
+        array.push(item);
+      }
+      toString() { return "native fn" }
+    }
+    class pop extends LoxCallable {
+      arity() { return 1; }
+      call(_, [array]) {
+        array.pop();
+      }
+      toString() { return "native fn" }
+    }
+    class unshift extends LoxCallable {
+      arity() { return 2; }
+      call(_, [array, item]) {
+        array.unshift(item);
+      }
+      toString() { return "native fn" }
+    }
+    class shift extends LoxCallable {
+      arity() { return 1; }
+      call(_, [array]) {
+        array.shift();
+      }
+      toString() { return "native fn" }
+    }
+    class writeFile extends LoxCallable {
+      arity() { return 2; }
+      call(_, [path, text]) {
+        fs.writeFileSync(path, text);
+      }
+    }
     this.globals.define("clock", new clock())
+    this.globals.define("push", new push())
+    this.globals.define("pop", new pop())
+    this.globals.define("unshift", new unshift())
+    this.globals.define("shift", new shift())
+    this.globals.define("writeFile", new writeFile())
   }
 
-  visitLiteralExpr(expr) {
-    return expr.value;
+  visitLiteralExpr({ value }) {
+    if (value instanceof Array) {
+      for (const i in value) {
+        value[i] = this.evaluate(value[i]);
+      }
+    }
+
+    return value;
   }
   // explicit parentheses in an expression.
   visitGroupingExpr(expr) {
@@ -110,6 +156,9 @@ export class Interpreter {
   }
   visitGetExpr(expr) {
     const obj = this.evaluate(expr.object);
+    if (obj instanceof Array) {
+      return obj[expr.name.value];
+    }
     if (obj instanceof LoxInstance) {
       return obj.get(expr.name);
     }
@@ -214,12 +263,16 @@ export class Interpreter {
   }
   visitSetExpr(expr) {
     const obj = this.evaluate(expr.object);
+    const value = this.evaluate(expr.value);
 
+    if (obj instanceof Array) {
+      obj[expr.name.value] = value;
+      return value;
+    }
     if (!(obj instanceof LoxInstance)) {
       throw new Error("Only instances have fields");
     }
 
-    const value = this.evaluate(expr.value);
     obj.set(expr.name, value);
     return value;
   }
