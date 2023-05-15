@@ -1,0 +1,9 @@
+{
+  "name": "lox",
+  "version": "1.0.0",
+  "description": "Small interpreted language written in JS",
+  "main": "./src/index.mjs",
+  "author": "VladPetryshyn <vlad_petryshyn@pm.me>",
+  "license": "GPLv3",
+  "private": false
+}
