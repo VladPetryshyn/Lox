@@ -1,5 +1,5 @@
 import { Resolver } from "./Resolver.mjs";
-import * as fs from "fs"
+import * as fs from "fs";
 import { Interpreter } from "./Interpreter.mjs";
 import { Parser } from "./Parser.mjs";
 import Scanner from "./Scanner.mjs";
@@ -15,8 +15,8 @@ export class Lox {
     const file = String(fs.readFileSync(path));
     this.run(file);
 
-    if (this.hadRuntimeError) System.exit(70);
-  }
+    if (this.hadRuntimeError) process.exit(70);
+  };
 
   run(file) {
     const scanner = new Scanner(file);
@@ -29,23 +29,19 @@ export class Lox {
     const resolver = new Resolver(this.interpreter);
     resolver.resolve(statements);
     this.interpreter.interpret(statements);
-
-    // for (const token of tokens) {
-    //   console.log(token)
-    // }
   }
 
-  error(token, message) {
-    this.report(token.line, "", message)
+  error(line, message) {
+    this.report(line, "", message);
   }
 
   report(line, where, message) {
-    console.error(`[${line}] Error ${where}: ${message}`)
+    console.error(`[${line}] Error ${where}: ${message}`);
     this.hadError = true;
   }
 
   runtimeError(error) {
-    console.error(error.getMessage() +
+    console.error(error.message +
       "\n[line " + error.token.line + "]");
     this.hadRuntimeError = true;
   }

@@ -63,7 +63,7 @@ export class Resolver {
     this.define(stmt.name);
 
     if (stmt.superclass && stmt.name.lexeme === stmt?.superclass?.name?.lexeme) {
-      LoxImplementation.error(stmt.superclass.name, "A class can't inherit from itself");
+      LoxImplementation.error(stmt.superclass.name.line, "A class can't inherit from itself");
     }
 
     if (stmt.superclass) {
@@ -101,12 +101,12 @@ export class Resolver {
   }
   visitReturnStmt(stmt) {
     if (this.currentFunction === FunctionType.NONE) {
-      LoxImplementation.error(stmt.keyword, "Can't return from top-level code.");
+      LoxImplementation.error(stmt.keyword.line, "Can't return from top-level code.");
     }
 
     if (stmt.value) {
       if (this.currentFunction === FunctionType.INITIALIZER) {
-        LoxImplementation.error(stmt.keyword, "Can't return a value from an initializer.");
+        LoxImplementation.error(stmt.keyword.line, "Can't return a value from an initializer.");
       }
       this.resolve(stmt.value);
     }
@@ -158,10 +158,10 @@ export class Resolver {
   }
   visitSuperExpr(expr) {
     if (this.currentClass == ClassType.NONE) {
-      LoxImplementation.error(expr.keyword,
+      LoxImplementation.error(expr.keyword.line,
         "Can't use 'super' outside of a class.");
     } else if (this.currentClass != ClassType.SUBCLASS) {
-      LoxImplementation.error(expr.keyword,
+      LoxImplementation.error(expr.keyword.line,
         "Can't use 'super' in a class with no superclass.");
     }
     this.resolveLocal(expr, expr.keyword);
@@ -169,7 +169,7 @@ export class Resolver {
 
   visitThisExpr(expr) {
     if (this.currentClass === ClassType.NONE) {
-      LoxImplementation.error(expr.keyword, "Can't use this outside of a class.");
+      LoxImplementation.error(expr.keyword.line, "Can't use this outside of a class.");
     }
 
     this.resolveLocal(expr, expr.keyword);
@@ -185,7 +185,7 @@ export class Resolver {
   }
   visitVariableExpr(expr) {
     if (this.scopes.length > 0 && this.scopes[this.scopes.length - 1].get(expr.name.lexme) === false) {
-      LoxImplementation.error(expr.name, "Can't read variable in its own initializer.");
+      LoxImplementation.error(expr.name.line, "Can't read variable in its own initializer.");
     }
 
     this.resolveLocal(expr, expr.name);
@@ -196,7 +196,7 @@ export class Resolver {
 
     const scope = this.scopes[this.scopes.length - 1]
     if (scope.has(name.lexeme)) {
-      LoxImplementation.error(name, "Already a variable with this name in this scope");
+      LoxImplementation.error(name.line, "Already a variable with this name in this scope");
     }
     scope.set(name.lexeme, false);
   }

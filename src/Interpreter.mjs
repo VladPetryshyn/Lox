@@ -6,6 +6,8 @@ import { LoxInstance } from "./LoxInstance.mjs";
 import { Return } from "./Return.mjs";
 import { TokenType } from "./TokenType.mjs";
 import * as fs from "fs";
+import { LoxImplementation } from "./index.mjs";
+import { RuntimeError } from "./RuntimeError.mjs";
 
 export class Interpreter {
   globals = new Environment();
@@ -16,37 +18,37 @@ export class Interpreter {
     class clock extends LoxCallable {
       arity() { return 0; }
       call() {
-        return Date.now() / 1000
+        return Date.now() / 1000;
       }
-      toString() { return "native fn" }
+      toString() { return "native fn"; }
     }
     class push extends LoxCallable {
       arity() { return 2; }
       call(_, [array, item]) {
         array.push(item);
       }
-      toString() { return "native fn" }
+      toString() { return "native fn"; }
     }
     class pop extends LoxCallable {
       arity() { return 1; }
       call(_, [array]) {
         array.pop();
       }
-      toString() { return "native fn" }
+      toString() { return "native fn"; }
     }
     class unshift extends LoxCallable {
       arity() { return 2; }
       call(_, [array, item]) {
         array.unshift(item);
       }
-      toString() { return "native fn" }
+      toString() { return "native fn"; }
     }
     class shift extends LoxCallable {
       arity() { return 1; }
       call(_, [array]) {
         array.shift();
       }
-      toString() { return "native fn" }
+      toString() { return "native fn"; }
     }
     class writeFile extends LoxCallable {
       arity() { return 2; }
@@ -54,12 +56,12 @@ export class Interpreter {
         fs.writeFileSync(path, text);
       }
     }
-    this.globals.define("clock", new clock())
-    this.globals.define("push", new push())
-    this.globals.define("pop", new pop())
-    this.globals.define("unshift", new unshift())
-    this.globals.define("shift", new shift())
-    this.globals.define("writeFile", new writeFile())
+    this.globals.define("clock", new clock());
+    this.globals.define("push", new push());
+    this.globals.define("pop", new pop());
+    this.globals.define("unshift", new unshift());
+    this.globals.define("shift", new shift());
+    this.globals.define("writeFile", new writeFile());
   }
 
   visitLiteralExpr({ value }) {
@@ -142,17 +144,17 @@ export class Interpreter {
     const args = [];
 
     for (const argument of expr.args) {
-      args.push(this.evaluate(argument))
+      args.push(this.evaluate(argument));
     }
 
     if (!(callee instanceof LoxCallable)) {
-      throw new Error(expr.paren, "Can only call functions and classes.");
+      throw new RuntimeError(expr.paren, "Can only call functions and classes.");
     }
     if (args.length !== callee.arity()) {
-      throw new Error(expr.paren, `Expected ${callee.arity} arguments but got ${args.length}.`);
+      throw new RuntimeError(expr.paren, `Expected ${callee.arity()} arguments but got ${args.length}.`);
     }
 
-    return callee.call(this, args)
+    return callee.call(this, args);
   }
   visitGetExpr(expr) {
     const obj = this.evaluate(expr.object);
@@ -163,7 +165,7 @@ export class Interpreter {
       return obj.get(expr.name);
     }
 
-    throw new Error("Only instances have properties");
+    throw new RuntimeError("Only instances have properties");
   }
 
   isTruthy(object) {
@@ -181,7 +183,7 @@ export class Interpreter {
         this.execute(statement);
       }
     } catch (error) {
-      console.error(error)
+      LoxImplementation.runtimeError(error);
     }
   }
 
@@ -218,7 +220,7 @@ export class Interpreter {
       superclass = this.evaluate(stmt.superclass);
 
       if (!(superclass instanceof LoxClass)) {
-        throw new Error("Superclass must be a class");
+        throw new RuntimeError("Superclass must be a class");
       }
     }
     this.environment.define(stmt.name.lexeme, null);
@@ -270,7 +272,7 @@ export class Interpreter {
       return value;
     }
     if (!(obj instanceof LoxInstance)) {
-      throw new Error("Only instances have fields");
+      throw new RuntimeError("Only instances have fields");
     }
 
     obj.set(expr.name, value);
@@ -285,7 +287,7 @@ export class Interpreter {
     const method = superclass.findMethod(expr.method.lexeme);
 
     if (!method) {
-      throw new Error("Undefined property");
+      throw new RuntimeError("Undefined property");
     }
 
     return method.bind(obj);
@@ -306,7 +308,7 @@ export class Interpreter {
   }
   visitReturnStmt(stmt) {
     let value = null;
-    if (stmt.value) value = this.evaluate(stmt.value)
+    if (stmt.value) value = this.evaluate(stmt.value);
 
     throw new Return(value);
   }

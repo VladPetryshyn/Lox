@@ -132,8 +132,7 @@ export default class Scanner {
     }
 
     if (this.isAtEnd()) {
-      LoxImplementation.error(this.line, "Unterminated string");
-      return;
+      throw LoxImplementation.error(this.line, "Unterminated string");
     }
 
     // closing of the string

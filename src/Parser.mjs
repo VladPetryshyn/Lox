@@ -25,13 +25,13 @@ export class Parser {
 
       if (expr instanceof Variable) {
         const name = expr.name;
-        return new Assign(name, value)
+        return new Assign(name, value);
       } else if (expr instanceof Get) {
         const get = expr;
         return new ExprSet(get.object, get.name, value);
       }
 
-      this.error(equals, "Invalid assignment target.");
+      this.error(equals.line, "Invalid assignment target.");
     }
 
     return expr;
@@ -41,7 +41,7 @@ export class Parser {
     while (this.match(TokenType.OR)) {
       const operator = this.previous();
       const right = this.and();
-      expr = new Logical(expr, operator, right)
+      expr = new Logical(expr, operator, right);
     }
 
 
@@ -52,7 +52,7 @@ export class Parser {
     while (this.match(TokenType.AND)) {
       const operator = this.previous();
       const right = this.equality();
-      expr = new Logical(expr, operator, right)
+      expr = new Logical(expr, operator, right);
     }
 
     return expr;
@@ -108,7 +108,7 @@ export class Parser {
     return this.tokens[this.current];
   }
   next() {
-    return this.tokens[this.current + 1]
+    return this.tokens[this.current + 1];
   }
 
   previous() {
@@ -166,7 +166,7 @@ export class Parser {
     if (!this.check(TokenType.RIGHT_PAREN)) {
       do {
         if (args.length > 100) {
-          this.error(this.peek(), "Can't have more than 100 arguments.");
+          this.error(this.peek().line, "Can't have more than 100 arguments.");
         }
         args.push(this.expression());
       } while (this.match(TokenType.COMMA));
@@ -174,10 +174,7 @@ export class Parser {
 
     const paren = this.consume(TokenType.RIGHT_PAREN, "Expect ')' after arguments.");
 
-    // if (this.check(TokenType.SEMICOLON))
-    //   this.consume(TokenType.SEMICOLON, "Expect ; after value.");
-
-    return new Call(callee, paren, args)
+    return new Call(callee, paren, args);
   }
   call() {
     let expr = this.primary();
@@ -186,10 +183,10 @@ export class Parser {
       if (this.match(TokenType.LEFT_BRACKET)) {
         const arr = this.arrayStmt();
         if (arr.length !== 1) {
-          throw this.error(this.peek(), "1");
+          throw this.error(this.peek().line, "1");
         }
 
-        return new Get(expr, arr[0])
+        return new Get(expr, arr[0]);
       } else if (this.match(TokenType.LEFT_PAREN)) {
         expr = this.finishCall(expr);
       } else if (this.match(TokenType.DOT)) {
@@ -209,7 +206,7 @@ export class Parser {
     if (this.match(TokenType.NIL)) return new Literal(null);
 
     if (this.match(TokenType.NUMBER, TokenType.STRING)) {
-      return new Literal(this.previous().literal)
+      return new Literal(this.previous().literal);
     }
     if (this.match(TokenType.SUPER)) {
       const keyword = this.previous();
@@ -232,17 +229,18 @@ export class Parser {
       return new Grouping(expr);
     }
 
-    throw this.error(this.peek(), "Expect expression.");
+    throw this.error(this.peek().line, "Expect expression.");
   }
 
   consume(type, message) {
     if (this.check(type)) return this.advance();
 
-    throw this.error(this.peek(), message);
+    console.log(this.peek());
+    throw this.error(this.peek().line, message);
   }
 
-  error(token, message) {
-    LoxImplementation.error(token, message);
+  error(line, message) {
+    LoxImplementation.error(line, message);
     return new Error();
   }
 
@@ -309,7 +307,7 @@ export class Parser {
   }
 
   whileStatement() {
-    this.consume(TokenType.LEFT_PAREN, "Expect '(' after 'while'")
+    this.consume(TokenType.LEFT_PAREN, "Expect '(' after 'while'");
     const condition = this.expression();
 
     this.consume(TokenType.RIGHT_PAREN, "Expect '(' after condition");
@@ -318,7 +316,7 @@ export class Parser {
     return new While(condition, body);
   }
   forStatement() {
-    this.consume(TokenType.LEFT_PAREN, "Expect '(' after for")
+    this.consume(TokenType.LEFT_PAREN, "Expect '(' after for");
     let initializer;
 
     if (this.match(TokenType.SEMICOLON)) {
@@ -333,14 +331,14 @@ export class Parser {
     if (!this.check(TokenType.SEMICOLON)) {
       condition = this.expression();
     }
-    this.consume(TokenType.SEMICOLON, "Expect ; after loop condition.")
+    this.consume(TokenType.SEMICOLON, "Expect ; after loop condition.");
 
     let increment = null;
     if (!this.check(TokenType.RIGHT_PAREN)) {
       increment = this.expression();
     }
 
-    this.consume(TokenType.RIGHT_PAREN, "Expect ')' after for clauses.")
+    this.consume(TokenType.RIGHT_PAREN, "Expect ')' after for clauses.");
 
     let body = this.statement();
 
@@ -351,7 +349,7 @@ export class Parser {
     body = new While(condition, body);
 
     if (initializer) {
-      body = new Block([initializer, body])
+      body = new Block([initializer, body]);
     }
 
     return body;
@@ -386,7 +384,7 @@ export class Parser {
   expressionStatement() {
     const expr = this.expression();
 
-    // this.consume(TokenType.SEMICOLON, "Expect ; after value.");
+    this.consume(TokenType.SEMICOLON, "Expect ; after expression.");
     return new Expression(expr);
   }
 
@@ -398,14 +396,14 @@ export class Parser {
     if (!this.check(TokenType.RIGHT_PAREN)) {
       do {
         if (parameters.length > 100) {
-          this.error(this.peek(), "Can't have more than 100 parameters.")
+          this.error(this.peek().line, "Can't have more than 100 parameters.");
         }
 
-        parameters.push(this.consume(TokenType.IDENTIFIER, "Expect parameter name."))
+        parameters.push(this.consume(TokenType.IDENTIFIER, "Expect parameter name."));
       } while (this.match(TokenType.COMMA));
     }
 
-    this.consume(TokenType.RIGHT_PAREN, "Expect ')' after parameters.")
+    this.consume(TokenType.RIGHT_PAREN, "Expect ')' after parameters.");
 
     this.consume(TokenType.LEFT_BRACE, `Expect '{' before ${kind} body`);
     const body = this.block();

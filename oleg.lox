@@ -1,5 +1,0 @@
-var oleg = [1, 2, 3, 4, 10];
-
-writeFile("/home/vlad/olga.txt", "I hate oleg")
-
-print oleg;
