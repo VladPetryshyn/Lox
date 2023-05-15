@@ -1,6 +1,6 @@
 module.exports = {
     "env": {
-        "commonjs": true,
+        "browser": true,
         "es2021": true,
         "node": true
     },
@@ -8,7 +8,8 @@ module.exports = {
     "overrides": [
     ],
     "parserOptions": {
-        "ecmaVersion": "latest"
+        "ecmaVersion": "latest",
+        "sourceType": "module"
     },
     "rules": {
     }
