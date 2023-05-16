@@ -5,5 +5,12 @@
   "main": "./src/index.mjs",
   "author": "VladPetryshyn <vlad_petryshyn@pm.me>",
   "license": "GPLv3",
-  "private": false
+  "private": false,
+  "bin": {
+    "lox": "./bin/lox"
+  },
+  "devDependencies": {
+    "esm": "^3.2.25"
+  },
+  "typings": "./src/index.d.ts"
 }

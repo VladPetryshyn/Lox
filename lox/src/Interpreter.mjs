@@ -5,7 +5,6 @@ import { LoxFunction } from "./LoxFunction.mjs";
 import { LoxInstance } from "./LoxInstance.mjs";
 import { Return } from "./Return.mjs";
 import { TokenType } from "./TokenType.mjs";
-import * as fs from "fs";
 import { LoxImplementation } from "./index.mjs";
 import { RuntimeError } from "./RuntimeError.mjs";
 
@@ -50,18 +49,19 @@ export class Interpreter {
       }
       toString() { return "native fn"; }
     }
-    class writeFile extends LoxCallable {
-      arity() { return 2; }
-      call(_, [path, text]) {
-        fs.writeFileSync(path, text);
+    class len extends LoxCallable {
+      arity() { return 1; }
+      call(_, [array]) {
+        return array.length;
       }
+      toString() { return "native fn"; }
     }
     this.globals.define("clock", new clock());
     this.globals.define("push", new push());
     this.globals.define("pop", new pop());
     this.globals.define("unshift", new unshift());
     this.globals.define("shift", new shift());
-    this.globals.define("writeFile", new writeFile());
+    this.globals.define("len", new len());
   }
 
   visitLiteralExpr({ value }) {
@@ -159,6 +159,10 @@ export class Interpreter {
   visitGetExpr(expr) {
     const obj = this.evaluate(expr.object);
     if (obj instanceof Array) {
+      if (expr.name.name.type === "identifier") {
+        const index = this.visitVariableExpr(expr.name);
+        return obj[index];
+      }
       return obj[expr.name.value];
     }
     if (obj instanceof LoxInstance) {
@@ -169,8 +173,6 @@ export class Interpreter {
   }
 
   isTruthy(object) {
-    // if (object == null) return false;
-    // if (object instanceof Boolean) return Boolean(object);
     return !!object;
   }
   isEqual(a, b) {

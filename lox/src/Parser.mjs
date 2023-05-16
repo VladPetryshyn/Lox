@@ -235,7 +235,6 @@ export class Parser {
   consume(type, message) {
     if (this.check(type)) return this.advance();
 
-    console.log(this.peek());
     throw this.error(this.peek().line, message);
   }
 

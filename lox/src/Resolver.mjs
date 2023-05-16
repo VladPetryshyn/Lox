@@ -1,4 +1,4 @@
-import { Expr } from "./Expr.mjs";
+import { Expr, Variable } from "./Expr.mjs";
 import { createEnum } from "./helpers/enums.mjs";
 import { Stmt } from "./Stmt.mjs";
 import { LoxImplementation } from "./index.mjs";
@@ -62,7 +62,7 @@ export class Resolver {
     this.declare(stmt.name);
     this.define(stmt.name);
 
-    if (stmt.superclass && stmt.name.lexeme === stmt?.superclass?.name?.lexeme) {
+    if (stmt && stmt.superclass && stmt.superclass.name && stmt.name.lexeme === stmt.superclass.name.lexeme) {
       LoxImplementation.error(stmt.superclass.name.line, "A class can't inherit from itself");
     }
 
@@ -139,6 +139,9 @@ export class Resolver {
   }
   visitGetExpr(expr) {
     this.resolve(expr.object);
+    if (expr.name instanceof Variable) {
+      this.resolve(expr.name);
+    }
   }
   visistThisExpr(expr) {
     this.resolveLocal(expr, expr.keyword);
@@ -194,7 +197,7 @@ export class Resolver {
   declare(name) {
     if (this.scopes.length === 0) return;
 
-    const scope = this.scopes[this.scopes.length - 1]
+    const scope = this.scopes[this.scopes.length - 1];
     if (scope.has(name.lexeme)) {
       LoxImplementation.error(name.line, "Already a variable with this name in this scope");
     }

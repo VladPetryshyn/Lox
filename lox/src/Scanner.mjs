@@ -1,6 +1,6 @@
-import Token from "./Token.mjs"
-import { TokenType } from "./TokenType.mjs"
-import { LoxImplementation } from "./index.mjs"
+import Token from "./Token.mjs";
+import { TokenType } from "./TokenType.mjs";
+import { LoxImplementation } from "./index.mjs";
 
 const keywords = Object.freeze({
   "and": TokenType.AND,
@@ -19,7 +19,7 @@ const keywords = Object.freeze({
   "var": TokenType.VAR,
   "while": TokenType.WHILE,
   "or": TokenType.OR
-})
+});
 
 export default class Scanner {
   source = "";
@@ -38,7 +38,7 @@ export default class Scanner {
       this.scanToken();
     }
 
-    this.tokens.push(new Token(TokenType.EOF, "", null, this.line))
+    this.tokens.push(new Token(TokenType.EOF, "", null, this.line));
     return this.tokens;
   }
 
@@ -175,11 +175,11 @@ export default class Scanner {
     while (this.isAlphaNumeric(this.peek())) this.advance();
 
     const text = this.source.substring(this.start, this.current);
-    let type = keywords[text]
+    let type = keywords[text];
     if (!type) {
       type = TokenType.IDENTIFIER;
     }
-    this.addToken(type)
+    this.addToken(type);
   }
 
   multilineComment() {
