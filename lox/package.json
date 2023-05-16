@@ -1,5 +1,5 @@
 {
-  "name": "lox",
+  "name": "vlads-lox",
   "version": "1.0.0",
   "description": "Small interpreted language written in JS",
   "main": "./src/index.mjs",

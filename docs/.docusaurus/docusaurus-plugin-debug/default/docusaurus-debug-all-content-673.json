@@ -1,0 +1,324 @@
+{
+  "docusaurus-plugin-content-docs": {
+    "default": {
+      "loadedVersions": [
+        {
+          "versionName": "current",
+          "label": "Next",
+          "banner": null,
+          "badge": false,
+          "noIndex": false,
+          "className": "docs-version-current",
+          "path": "/docs",
+          "tagsPath": "/docs/tags",
+          "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs",
+          "editUrlLocalized": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/i18n/en/docusaurus-plugin-content-docs/current",
+          "isLast": true,
+          "routePriority": -1,
+          "sidebarFilePath": "/home/vlad/Documents/Documents/projects/tox2/docs/sidebars.js",
+          "contentPath": "/home/vlad/Documents/Documents/projects/tox2/docs/docs",
+          "contentPathLocalized": "/home/vlad/Documents/Documents/projects/tox2/docs/i18n/en/docusaurus-plugin-content-docs/current",
+          "docs": [
+            {
+              "unversionedId": "intro",
+              "id": "intro",
+              "title": "Lox Intro",
+              "description": "Let's discover Lox in less than 5 minutes.",
+              "source": "@site/docs/intro.md",
+              "sourceDirName": ".",
+              "slug": "/intro",
+              "permalink": "/docs/intro",
+              "draft": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/intro.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 1,
+              "frontMatter": {
+                "sidebar_position": 1
+              },
+              "sidebar": "tutorialSidebar",
+              "next": {
+                "title": "Lox - Basics",
+                "permalink": "/docs/category/lox---basics"
+              }
+            },
+            {
+              "unversionedId": "lox-basics/classes",
+              "id": "lox-basics/classes",
+              "title": "Classes",
+              "description": "Syntax",
+              "source": "@site/docs/lox-basics/classes.md",
+              "sourceDirName": "lox-basics",
+              "slug": "/lox-basics/classes",
+              "permalink": "/docs/lox-basics/classes",
+              "draft": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/lox-basics/classes.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 4,
+              "frontMatter": {
+                "sidebar_position": 4
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "For loop",
+                "permalink": "/docs/lox-basics/for-loop"
+              },
+              "next": {
+                "title": "Functions",
+                "permalink": "/docs/lox-basics/functions"
+              }
+            },
+            {
+              "unversionedId": "lox-basics/data-structures",
+              "id": "lox-basics/data-structures",
+              "title": "Data Structures",
+              "description": "Lox has 3 data structures: Strings, Numbers, Arrays",
+              "source": "@site/docs/lox-basics/data-structures.md",
+              "sourceDirName": "lox-basics",
+              "slug": "/lox-basics/data-structures",
+              "permalink": "/docs/lox-basics/data-structures",
+              "draft": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/lox-basics/data-structures.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 6,
+              "frontMatter": {
+                "sidebar_position": 6
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Functions",
+                "permalink": "/docs/lox-basics/functions"
+              },
+              "next": {
+                "title": "Standard Library",
+                "permalink": "/docs/lox-basics/standard-library"
+              }
+            },
+            {
+              "unversionedId": "lox-basics/for-loop",
+              "id": "lox-basics/for-loop",
+              "title": "For loop",
+              "description": "Syntax",
+              "source": "@site/docs/lox-basics/for-loop.md",
+              "sourceDirName": "lox-basics",
+              "slug": "/lox-basics/for-loop",
+              "permalink": "/docs/lox-basics/for-loop",
+              "draft": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/lox-basics/for-loop.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 3,
+              "frontMatter": {
+                "sidebar_position": 3
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "While Loop",
+                "permalink": "/docs/lox-basics/while-loop"
+              },
+              "next": {
+                "title": "Classes",
+                "permalink": "/docs/lox-basics/classes"
+              }
+            },
+            {
+              "unversionedId": "lox-basics/functions",
+              "id": "lox-basics/functions",
+              "title": "Functions",
+              "description": "Syntax",
+              "source": "@site/docs/lox-basics/functions.md",
+              "sourceDirName": "lox-basics",
+              "slug": "/lox-basics/functions",
+              "permalink": "/docs/lox-basics/functions",
+              "draft": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/lox-basics/functions.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 5,
+              "frontMatter": {
+                "sidebar_position": 5
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Classes",
+                "permalink": "/docs/lox-basics/classes"
+              },
+              "next": {
+                "title": "Data Structures",
+                "permalink": "/docs/lox-basics/data-structures"
+              }
+            },
+            {
+              "unversionedId": "lox-basics/print",
+              "id": "lox-basics/print",
+              "title": "Print statement",
+              "description": "Use Print statement to output something to console",
+              "source": "@site/docs/lox-basics/print.md",
+              "sourceDirName": "lox-basics",
+              "slug": "/lox-basics/print",
+              "permalink": "/docs/lox-basics/print",
+              "draft": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/lox-basics/print.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 1,
+              "frontMatter": {
+                "sidebar_position": 1
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Lox - Basics",
+                "permalink": "/docs/category/lox---basics"
+              },
+              "next": {
+                "title": "While Loop",
+                "permalink": "/docs/lox-basics/while-loop"
+              }
+            },
+            {
+              "unversionedId": "lox-basics/standard-library",
+              "id": "lox-basics/standard-library",
+              "title": "Standard Library",
+              "description": "clock()",
+              "source": "@site/docs/lox-basics/standard-library.md",
+              "sourceDirName": "lox-basics",
+              "slug": "/lox-basics/standard-library",
+              "permalink": "/docs/lox-basics/standard-library",
+              "draft": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/lox-basics/standard-library.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 7,
+              "frontMatter": {
+                "sidebar_position": 7
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Data Structures",
+                "permalink": "/docs/lox-basics/data-structures"
+              }
+            },
+            {
+              "unversionedId": "lox-basics/while-loop",
+              "id": "lox-basics/while-loop",
+              "title": "While Loop",
+              "description": "Syntax",
+              "source": "@site/docs/lox-basics/while-loop.md",
+              "sourceDirName": "lox-basics",
+              "slug": "/lox-basics/while-loop",
+              "permalink": "/docs/lox-basics/while-loop",
+              "draft": false,
+              "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/lox-basics/while-loop.md",
+              "tags": [],
+              "version": "current",
+              "sidebarPosition": 2,
+              "frontMatter": {
+                "sidebar_position": 2
+              },
+              "sidebar": "tutorialSidebar",
+              "previous": {
+                "title": "Print statement",
+                "permalink": "/docs/lox-basics/print"
+              },
+              "next": {
+                "title": "For loop",
+                "permalink": "/docs/lox-basics/for-loop"
+              }
+            }
+          ],
+          "drafts": [],
+          "sidebars": {
+            "tutorialSidebar": [
+              {
+                "type": "doc",
+                "id": "intro"
+              },
+              {
+                "type": "category",
+                "label": "Lox - Basics",
+                "collapsible": true,
+                "collapsed": true,
+                "items": [
+                  {
+                    "type": "doc",
+                    "id": "lox-basics/print"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "lox-basics/while-loop"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "lox-basics/for-loop"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "lox-basics/classes"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "lox-basics/functions"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "lox-basics/data-structures"
+                  },
+                  {
+                    "type": "doc",
+                    "id": "lox-basics/standard-library"
+                  }
+                ],
+                "link": {
+                  "type": "generated-index",
+                  "description": "Learn the most important Lox concepts.",
+                  "slug": "/category/lox---basics",
+                  "permalink": "/docs/category/lox---basics"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "docusaurus-plugin-content-blog": {
+    "default": {
+      "blogSidebarTitle": "Recent posts",
+      "blogPosts": [],
+      "blogListPaginated": [],
+      "blogTags": {},
+      "blogTagsListPath": "/blog/tags",
+      "blogTagsPaginated": []
+    }
+  },
+  "docusaurus-plugin-content-pages": {
+    "default": [
+      {
+        "type": "jsx",
+        "permalink": "/",
+        "source": "@site/src/pages/index.tsx"
+      },
+      {
+        "type": "mdx",
+        "permalink": "/markdown-page",
+        "source": "@site/src/pages/markdown-page.md",
+        "title": "Markdown page example",
+        "description": "You don't need React to write simple standalone pages.",
+        "frontMatter": {
+          "title": "Markdown page example"
+        }
+      },
+      {
+        "type": "jsx",
+        "permalink": "/repl/",
+        "source": "@site/src/pages/repl/index.tsx"
+      }
+    ]
+  },
+  "docusaurus-plugin-debug": {},
+  "docusaurus-theme-classic": {},
+  "docusaurus-bootstrap-plugin": {},
+  "docusaurus-mdx-fallback-plugin": {}
+}

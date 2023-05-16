@@ -1,0 +1,27 @@
+{
+  "unversionedId": "lox-basics/classes",
+  "id": "lox-basics/classes",
+  "title": "Classes",
+  "description": "Syntax",
+  "source": "@site/docs/lox-basics/classes.md",
+  "sourceDirName": "lox-basics",
+  "slug": "/lox-basics/classes",
+  "permalink": "/Lox/docs/lox-basics/classes",
+  "draft": false,
+  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/lox-basics/classes.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 4,
+  "frontMatter": {
+    "sidebar_position": 4
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "For loop",
+    "permalink": "/Lox/docs/lox-basics/for-loop"
+  },
+  "next": {
+    "title": "Functions",
+    "permalink": "/Lox/docs/lox-basics/functions"
+  }
+}

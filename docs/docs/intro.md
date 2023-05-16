@@ -10,7 +10,7 @@ Let's discover **Lox in less than 5 minutes**.
 
 Get started by **installing module**.
 ```bash
-npm install vladpetryshyn/lox
+npm install vlads-lox
 ```
 
 Or **try Lox immediately** with **[repl](/repl)**.

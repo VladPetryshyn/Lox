@@ -1,0 +1,27 @@
+{
+  "unversionedId": "lox-basics/create-a-document",
+  "id": "lox-basics/create-a-document",
+  "title": "Create a Document",
+  "description": "Documents are groups of pages connected through:",
+  "source": "@site/docs/lox-basics/create-a-document.md",
+  "sourceDirName": "lox-basics",
+  "slug": "/lox-basics/create-a-document",
+  "permalink": "/docs/lox-basics/create-a-document",
+  "draft": false,
+  "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/lox-basics/create-a-document.md",
+  "tags": [],
+  "version": "current",
+  "sidebarPosition": 2,
+  "frontMatter": {
+    "sidebar_position": 2
+  },
+  "sidebar": "tutorialSidebar",
+  "previous": {
+    "title": "Print statement",
+    "permalink": "/docs/lox-basics/print"
+  },
+  "next": {
+    "title": "Create a Blog Post",
+    "permalink": "/docs/lox-basics/create-a-blog-post"
+  }
+}
