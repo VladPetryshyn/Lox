@@ -18,8 +18,8 @@ logs
 Thumbs.db
 
 
-#/docs/.docusaurus
-#/docs/.cache-loader
+/docs/.docusaurus
+/docs/.cache-loader
 
 # Misc
 **/.DS_Store
