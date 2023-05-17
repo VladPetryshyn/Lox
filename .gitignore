@@ -3,8 +3,8 @@
 **/package-lock.json
 **/yarn.lock
 
-#**/dist
-#**/build
+**/dist
+**/build
 
 .env
 
