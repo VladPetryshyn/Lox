@@ -4,7 +4,7 @@ declare module "lox" {
     hadRuntimeError: boolean;
     private interpreter: any;
 
-    run(file: string): void;
+    run(file: string): string[];
     error(line: number, message: string): void;
     report(line: number, where: string, message: string): void;
     runtimeError(error: { message: string, token: { line: number } }): void;

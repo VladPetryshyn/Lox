@@ -13,7 +13,9 @@ export class Interpreter {
   environment = this.globals;
   locals = new Map();
 
-  constructor() {
+  clearEnvironment() {
+    this.globals = new Environment();
+    this.environment = this.globals;
     class clock extends LoxCallable {
       arity() { return 0; }
       call() {
@@ -62,6 +64,10 @@ export class Interpreter {
     this.globals.define("unshift", new unshift());
     this.globals.define("shift", new shift());
     this.globals.define("len", new len());
+  }
+
+  constructor() {
+    this.clearEnvironment();
   }
 
   visitLiteralExpr({ value }) {
@@ -184,6 +190,7 @@ export class Interpreter {
       for (const statement of statements) {
         this.execute(statement);
       }
+      this.clearEnvironment();
     } catch (error) {
       LoxImplementation.runtimeError(error);
     }
@@ -306,7 +313,7 @@ export class Interpreter {
 
   visitPrintStmt(stmt) {
     const value = this.evaluate(stmt.expression);
-    console.log(value);
+    LoxImplementation.output(value);
   }
   visitReturnStmt(stmt) {
     let value = null;

@@ -1,6 +1,6 @@
 {
   "name": "vlads-lox",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Small interpreted language written in JS",
   "main": "./src/index.mjs",
   "author": "VladPetryshyn <vlad_petryshyn@pm.me>",
@@ -9,8 +9,9 @@
   "bin": {
     "lox": "./bin/lox"
   },
-  "devDependencies": {
+  "devDependencies": {},
+  "typings": "./src/index.d.ts",
+  "dependencies": {
     "esm": "^3.2.25"
-  },
-  "typings": "./src/index.d.ts"
+  }
 }

@@ -1,0 +1,121 @@
+{
+  "pluginId": "default",
+  "version": "current",
+  "label": "Next",
+  "banner": null,
+  "badge": false,
+  "noIndex": false,
+  "className": "docs-version-current",
+  "isLast": true,
+  "docsSidebars": {
+    "tutorialSidebar": [
+      {
+        "type": "link",
+        "label": "Lox Intro",
+        "href": "/Lox/docs/intro",
+        "docId": "intro"
+      },
+      {
+        "type": "category",
+        "label": "Lox - Basics",
+        "collapsible": true,
+        "collapsed": true,
+        "items": [
+          {
+            "type": "link",
+            "label": "Print statement",
+            "href": "/Lox/docs/lox-basics/print",
+            "docId": "lox-basics/print"
+          },
+          {
+            "type": "link",
+            "label": "While Loop",
+            "href": "/Lox/docs/lox-basics/while-loop",
+            "docId": "lox-basics/while-loop"
+          },
+          {
+            "type": "link",
+            "label": "For loop",
+            "href": "/Lox/docs/lox-basics/for-loop",
+            "docId": "lox-basics/for-loop"
+          },
+          {
+            "type": "link",
+            "label": "Classes",
+            "href": "/Lox/docs/lox-basics/classes",
+            "docId": "lox-basics/classes"
+          },
+          {
+            "type": "link",
+            "label": "Functions",
+            "href": "/Lox/docs/lox-basics/functions",
+            "docId": "lox-basics/functions"
+          },
+          {
+            "type": "link",
+            "label": "Data Structures",
+            "href": "/Lox/docs/lox-basics/data-structures",
+            "docId": "lox-basics/data-structures"
+          },
+          {
+            "type": "link",
+            "label": "Standard Library",
+            "href": "/Lox/docs/lox-basics/standard-library",
+            "docId": "lox-basics/standard-library"
+          }
+        ],
+        "href": "/Lox/docs/category/lox---basics"
+      }
+    ]
+  },
+  "docs": {
+    "intro": {
+      "id": "intro",
+      "title": "Lox Intro",
+      "description": "Let's discover Lox in less than 5 minutes.",
+      "sidebar": "tutorialSidebar"
+    },
+    "lox-basics/classes": {
+      "id": "lox-basics/classes",
+      "title": "Classes",
+      "description": "Syntax",
+      "sidebar": "tutorialSidebar"
+    },
+    "lox-basics/data-structures": {
+      "id": "lox-basics/data-structures",
+      "title": "Data Structures",
+      "description": "Lox has 3 data structures: Strings, Numbers, Arrays",
+      "sidebar": "tutorialSidebar"
+    },
+    "lox-basics/for-loop": {
+      "id": "lox-basics/for-loop",
+      "title": "For loop",
+      "description": "Syntax",
+      "sidebar": "tutorialSidebar"
+    },
+    "lox-basics/functions": {
+      "id": "lox-basics/functions",
+      "title": "Functions",
+      "description": "Syntax",
+      "sidebar": "tutorialSidebar"
+    },
+    "lox-basics/print": {
+      "id": "lox-basics/print",
+      "title": "Print statement",
+      "description": "Use Print statement to output something to console",
+      "sidebar": "tutorialSidebar"
+    },
+    "lox-basics/standard-library": {
+      "id": "lox-basics/standard-library",
+      "title": "Standard Library",
+      "description": "clock()",
+      "sidebar": "tutorialSidebar"
+    },
+    "lox-basics/while-loop": {
+      "id": "lox-basics/while-loop",
+      "title": "While Loop",
+      "description": "Syntax",
+      "sidebar": "tutorialSidebar"
+    }
+  }
+}

@@ -9,7 +9,7 @@ sidebar_position: 4
 ```javascript
 // class declaration;
 class Lox {
-    constructor(name) {
+    init(name) {
         this.name = name;
     }
     // method
@@ -23,7 +23,7 @@ class Lox {
 
 ```javascript
 class Lox {
-    constructor(name) {
+    init(name) {
         this.name = name;
     }
     run() {

@@ -1,4 +1,4 @@
-import { Assign, Binary, Call, Get, Grouping, Literal, Logical, Variable, Set as ExprSet, This, Super } from "./Expr.mjs";
+import { Assign, Binary, Call, Get, Grouping, Literal, Logical, Variable, Set as ExprSet, This, Super, Unary } from "./Expr.mjs";
 import { LoxImplementation } from "./index.mjs";
 import { Block, Class, Expression, Function, If, Print, Return, Var, While } from "./Stmt.mjs";
 import { TokenType } from "./TokenType.mjs";
@@ -63,7 +63,7 @@ export class Parser {
     let expr = this.comparison();
 
     // we must find first eitehr != or == token
-    while (this.match(TokenType.BANG_EQUAL, TokenType.BANG_EQUAL_EQUAL)) {
+    while (this.match(TokenType.BANG_EQUAL, TokenType.EQUAL_EQUAL)) {
       const operator = this.previous();
       const right = this.comparison();
       expr = new Binary(expr, operator, right);
@@ -158,8 +158,7 @@ export class Parser {
       return new Unary(operator, right);
     }
 
-    const call = this.call();
-    return call;
+    return this.call();
   }
   finishCall(callee) {
     const args = [];

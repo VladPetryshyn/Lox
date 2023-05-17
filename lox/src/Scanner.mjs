@@ -176,7 +176,7 @@ export default class Scanner {
 
     const text = this.source.substring(this.start, this.current);
     let type = keywords[text];
-    if (!type) {
+    if (!type || text === "constructor") {
       type = TokenType.IDENTIFIER;
     }
     this.addToken(type);
@@ -196,7 +196,7 @@ export default class Scanner {
     }
 
     if (unclosed > 0) {
-      console.log("Error, unterminated comment");
+      LoxImplementation.output("Error, unterminated comment");
     }
   }
 }
