@@ -1,14 +1,16 @@
+import { RuntimeError } from "./RuntimeError.mjs";
+
 export class Environment {
   values = new Map();
   enclosing = null;
 
   constructor(enclosing) {
-    this.enclosing = enclosing
+    this.enclosing = enclosing;
   }
 
   define(name, value) {
     if (this.values.get(name)) {
-      throw new Error(`${name} Variable is already defined ${name.lexeme}`)
+      throw new RuntimeError(name, `${name} Variable is already defined ${name.lexeme}`);
     }
     this.values.set(name, value);
   }
@@ -22,7 +24,7 @@ export class Environment {
       this.enclosing.assign(name, value);
       return;
     }
-    throw new Error(`${name} Undefined variable, ${name.lexeme}.`)
+    throw new RuntimeError(name, `${name} Undefined variable, ${name.lexeme}.`);
   }
 
   get(name) {
@@ -34,7 +36,7 @@ export class Environment {
 
     if (this.enclosing) return this.enclosing.get(name);
 
-    throw new Error(`${name} Undefined variable, ${name.lexeme}.`)
+    throw new RuntimeError(name, `${name} Undefined variable, ${name.lexeme}.`);
   }
   getAt(distance, name) {
     const value = this.ancestor(distance).values.get(name);

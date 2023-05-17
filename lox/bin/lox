@@ -9,5 +9,6 @@ if (args > 3 || args.length < 3) {
   console.error("Usage: tox [script]");
 } else if (args.length === 3) {
   const file = String(fs.readFileSync(args[2]));
-  LoxImplementation.run(file);
+  const rawData = file.substring(0, file.length - 1);
+  LoxImplementation.run(rawData);
 }
