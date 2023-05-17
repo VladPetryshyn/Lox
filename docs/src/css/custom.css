@@ -32,3 +32,41 @@
 .feature-image {
   min-height: 150px;
 }
+.repl-container {
+  display: flex;
+  height: 100%;
+  flex: 1 0 600px;
+  padding: 15px;
+}
+.repl-textarea {
+  flex: 1;
+  font-size: 1.6rem;
+  resize: none;
+  padding: 15px;
+}
+.repl-output {
+  font-size: 1.6rem;
+  flex: 1;
+  height: 100%;
+  width: 100%;
+  padding: 15px;
+}
+.repl-header {
+  display: flex;
+  padding: 15px;
+}
+
+h2 {
+  margin: 0;
+}
+button {
+  background: none;
+  border: none;
+  padding: 0;
+}
+.repl-header__button {
+  margin-left: auto;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+}

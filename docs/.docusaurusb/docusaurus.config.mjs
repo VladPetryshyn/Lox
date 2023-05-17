@@ -28,7 +28,12 @@ export default {
       "classic",
       {
         "docs": {
-          "sidebarPath": "/home/vlad/Documents/Documents/projects/tox2/docs/sidebars.js"
+          "sidebarPath": "/home/vlad/Documents/Documents/projects/tox2/docs/sidebars.js",
+          "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/"
+        },
+        "blog": {
+          "showReadingTime": true,
+          "editUrl": "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/"
         },
         "theme": {
           "customCss": "/home/vlad/Documents/Documents/projects/tox2/docs/src/css/custom.css"
@@ -50,12 +55,6 @@ export default {
           "sidebarId": "tutorialSidebar",
           "position": "left",
           "label": "Tutorial"
-        },
-        {
-          "href": "/repl",
-          "sidebarId": "tutorialSidebar",
-          "position": "left",
-          "label": "Repl"
         },
         {
           "href": "https://github.com/VladPetryshyn/Lox",

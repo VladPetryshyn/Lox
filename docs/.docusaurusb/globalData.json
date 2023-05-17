@@ -1,0 +1,73 @@
+{
+  "docusaurus-plugin-content-docs": {
+    "default": {
+      "path": "/Lox/docs",
+      "versions": [
+        {
+          "name": "current",
+          "label": "Next",
+          "isLast": true,
+          "path": "/Lox/docs",
+          "mainDocId": "intro",
+          "docs": [
+            {
+              "id": "intro",
+              "path": "/Lox/docs/intro",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "lox-basics/classes",
+              "path": "/Lox/docs/lox-basics/classes",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "lox-basics/data-structures",
+              "path": "/Lox/docs/lox-basics/data-structures",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "lox-basics/for-loop",
+              "path": "/Lox/docs/lox-basics/for-loop",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "lox-basics/functions",
+              "path": "/Lox/docs/lox-basics/functions",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "lox-basics/print",
+              "path": "/Lox/docs/lox-basics/print",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "lox-basics/standard-library",
+              "path": "/Lox/docs/lox-basics/standard-library",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "lox-basics/while-loop",
+              "path": "/Lox/docs/lox-basics/while-loop",
+              "sidebar": "tutorialSidebar"
+            },
+            {
+              "id": "/category/lox---basics",
+              "path": "/Lox/docs/category/lox---basics",
+              "sidebar": "tutorialSidebar"
+            }
+          ],
+          "draftIds": [],
+          "sidebars": {
+            "tutorialSidebar": {
+              "link": {
+                "path": "/Lox/docs/intro",
+                "label": "intro"
+              }
+            }
+          }
+        }
+      ],
+      "breadcrumbs": true
+    }
+  }
+}
